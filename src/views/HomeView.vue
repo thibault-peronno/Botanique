@@ -3,20 +3,18 @@
     <section class="section">
         <h1 class="section_h1">Liste des plantes</h1>
         <div class="listPlantContainer">
-            <CardComponent v-for="plantsList in dataList" :key="`plantList-${plantsList.id}`" v-bind:plant="plantsList"/>
-    
+            <CardComponent v-for="plantsList in dataList" :key="`plantList-${plantsList.id}`" v-bind:plant="plantsList"/>    
         </div>
     </section>
-
 </template>
 
 <script>
 import CardComponent from '../components/CardComponent.vue';
 export default {
     data() {
-        // console.log(this.$store.state.plantsList.data);
+        console.log(this.$store.state.plantsList);
         return {
-            dataList : this.$store.state.plantsList.data
+            dataList : this.$store.state.plantsList.data,
         }
     },
     components: {

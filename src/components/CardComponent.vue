@@ -1,35 +1,39 @@
 
 <template>
-  <div class="cardPlant" >
-    <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
-    <div class="cardPlant_div_picture">
-      <img class="cardPlant_picture"  :src="plant.image_url"  alt="">
-    </div>
-    <div class="cardPlant_year-family">
-      <div class="plantYear">
-        <p>Découverte</p>
-        <p class="cardPlant_year tag">{{ plant.year }}</p>
+  <section>
+    <router-link :to="{ name: 'currentPlant', params: { plantId : plant.id} }">
+    <div class="cardPlant">
+      <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
+      <div class="cardPlant_div_picture">
+        <img class="cardPlant_picture" :src="plant.image_url" alt="">
       </div>
-      <div class="plantFamilly">
-        <p>Famille</p>
-        <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'non reçu'  }}</p>
+      <div class="cardPlant_year-family">
+        <div class="plantYear">
+          <p>Découverte</p>
+          <p class="cardPlant_year tag">{{ plant.year }}</p>
+        </div>
+        <div class="plantFamilly">
+          <p>Famille</p>
+          <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'non reçu' }}</p>
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
+  </section>
 </template>
 
 <script >
-export default{
+export default {
   name: "cardPlantComponent",
   props: {
     plant: {
-      type : Object,
+      type: Object,
       default: function () {
         return {
-          id : Number,
-          common_name : String,
-          year : Number,
-          family_common_name : String
+          id: Number,
+          common_name: String,
+          year: Number,
+          family_common_name: String
         }
       }
     }
@@ -38,10 +42,10 @@ export default{
 </script>
 
 <style scoped>
-
-.cardPlant{
+.cardPlant {
   width: 250px;
-	box-shadow: 0px 0px 3px 0px grey;
+  min-height: 380px;
+  box-shadow: 0px 0px 3px 0px grey;
   border-radius: 10px;
   padding: 10px;
   margin: 20px 10px;
@@ -50,7 +54,7 @@ export default{
   justify-content: space-between;
 }
 
-.cardPlant:hover{
+.cardPlant:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
@@ -63,12 +67,12 @@ h1 {
   text-align: center;
 }
 
-.cardPlant_div_picture{
+.cardPlant_div_picture {
   width: 100%;
   display: flex;
 }
 
-.cardPlant_picture{
+.cardPlant_picture {
   width: 150px;
   height: 150px;
   border-radius: 10px;
@@ -76,13 +80,13 @@ h1 {
   margin: 10px auto;
 }
 
-.cardPlant_year-family{
+.cardPlant_year-family {
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
 }
 
-.tag{
+.tag {
   color: white;
   font-weight: 700;
   background-color: rgb(63, 115, 75);
@@ -93,7 +97,5 @@ h1 {
 }
 
 
-@media (min-width: 1024px) {
-
-}
+@media (min-width: 1024px) {}
 </style>
