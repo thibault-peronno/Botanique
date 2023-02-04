@@ -12,7 +12,7 @@
 import CardComponent from '../components/CardComponent.vue';
 export default {
     data() {
-        console.log(this.$store.state.plantsList);
+        // console.log(this.$store.state.plantsList);
         return {
             dataList : this.$store.state.plantsList.data,
         }

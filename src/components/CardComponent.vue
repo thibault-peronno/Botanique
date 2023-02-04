@@ -59,13 +59,7 @@ export default {
   transform: scale(1.1);
 }
 
-h1 {
-  font-weight: bolder;
-  font-size: 2rem;
-  color: rgb(110, 175, 125);
-  margin: 0 0 10px 0;
-  text-align: center;
-}
+
 
 .cardPlant_div_picture {
   width: 100%;

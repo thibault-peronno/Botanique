@@ -22,6 +22,7 @@ export default createStore({
         },
         getPlantByIdMutation(state, plantData){
             console.log(state.currentPlant, plantData);
+            state.currentPlant = plantData;
         }
 
     },

@@ -43,6 +43,14 @@ header {
   max-height: 100vh;
 }
 
+h1 {
+  font-weight: bolder;
+  font-size: 2rem;
+  color: rgb(110, 175, 125);
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
 nav {
   width: 100%;
   font-size: 12px;
