@@ -6,8 +6,14 @@
       <img class="cardPlant_picture"  :src="plant.image_url"  alt="">
     </div>
     <div class="cardPlant_year-family">
-      <p class="cardPlant_year">{{ plant.year }}</p>
-      <p class="cardPlant_family">{{ plant.family_common_name ? plant.family_common_name : 'non reçu'  }}</p>
+      <div class="plantYear">
+        <p>Découverte</p>
+        <p class="cardPlant_year tag">{{ plant.year }}</p>
+      </div>
+      <div class="plantFamilly">
+        <p>Famille</p>
+        <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'non reçu'  }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -34,11 +40,14 @@ export default{
 <style scoped>
 
 .cardPlant{
-  width: 200px;
+  width: 250px;
 	box-shadow: 0px 0px 3px 0px grey;
   border-radius: 10px;
   padding: 10px;
-  margin: 20px 10px
+  margin: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cardPlant:hover{
@@ -64,19 +73,27 @@ h1 {
   height: 150px;
   border-radius: 10px;
   object-fit: cover;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .cardPlant_year-family{
   display: flex;
   justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.tag{
+  color: white;
+  font-weight: 700;
+  background-color: rgb(63, 115, 75);
+  padding: 5px 7px;
+  margin: 5px 0;
+  border-radius: 10px;
+  text-align: center;
 }
 
 
 @media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+
 }
 </style>

@@ -13,9 +13,8 @@
 <script>
 import CardComponent from '../components/CardComponent.vue';
 export default {
-    name: "home",
     data() {
-        console.log(this.$store.state.plantsList.data);
+        // console.log(this.$store.state.plantsList.data);
         return {
             dataList : this.$store.state.plantsList.data
         }

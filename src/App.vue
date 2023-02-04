@@ -13,13 +13,34 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
-<style scoped>
+<style >
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,1000;1,800&display=swap');
+
+*, ::after, ::before{
+    margin :0;
+    padding : 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', 'Lucida Sans', 'Verdana', 'sans-serif';
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+li{
+    list-style-type: none;
+}
+
+.icon{
+    width:30px;
+    height:30px;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
-}
-
-.logo {
 }
 
 nav {
@@ -43,25 +64,11 @@ nav a {
   border-left: 1px solid var(--color-border);
 }
 
-nav a:first-of-type {
-  border: 0;
-}
-
 @media (min-width: 1024px) {
   header {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 
   nav {
