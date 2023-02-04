@@ -1,18 +1,21 @@
 
 <template>
     Je suis la home
+    <div class="listPlantContainer">
+        <CardComponent v-for="plantsList in dataList" :key="`plantList-${plantsList.id}`" v-bind:plant="plantsList"/>
 
-    <CardComponent/>
+    </div>
 
 </template>
 
 <script>
-import { onMounted } from 'vue';
 import CardComponent from '../components/CardComponent.vue';
 export default {
     name: "home",
     data() {
+        console.log(this.$store.state.plantsList);
         return {
+            dataList : this.$store.state.plantsList.data
         }
     },
     components: {
@@ -24,6 +27,12 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
+
+.listPlantContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 </style>

@@ -1,28 +1,34 @@
 
 <template>
-  <div class="cardPlant">
-    <h1 class="cardPlant_h1">Nom de la plante</h1>
+  <div class="cardPlant" >
+    <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
     <div class="cardPlant_div_picture">
-      <img class="cardPlant_picture"  src="https://d2seqvvyy3b8p2.cloudfront.net/40ab8e7cdddbe3e78a581b84efa4e893.jpg" alt="">
+      <img class="cardPlant_picture"  src="{{ plant.image_url }}" alt="">
     </div>
     <div class="cardPlant_year-family">
-      <p class="cardPlant_year">année</p>
-      <p class="cardPlant_family">famille</p>
+      <p class="cardPlant_year">{{ plant.year }}</p>
+      <p class="cardPlant_family">{{ plant.family_common_name }}</p>
     </div>
   </div>
 </template>
 
 <script >
 export default{
-  name: "cardPlantComponent"
-
+  name: "cardPlantComponent",
+  props: {
+    plant: {
+      type : Object,
+      default: function () {
+        return {
+          id : Number,
+          common_name : String,
+          year : Number,
+          family_common_name : String
+        }
+      }
+    }
+  }
 }
-// defineProps({
-//   msg: {
-//     type: String,
-//     required: true
-//   }
-// })
 </script>
 
 <style scoped>
