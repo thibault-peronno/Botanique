@@ -3,11 +3,11 @@
   <div class="cardPlant" >
     <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
     <div class="cardPlant_div_picture">
-      <img class="cardPlant_picture"  src="{{ plant.image_url }}" alt="">
+      <img class="cardPlant_picture"  :src="plant.image_url"  alt="">
     </div>
     <div class="cardPlant_year-family">
       <p class="cardPlant_year">{{ plant.year }}</p>
-      <p class="cardPlant_family">{{ plant.family_common_name }}</p>
+      <p class="cardPlant_family">{{ plant.family_common_name ? plant.family_common_name : 'non reçu'  }}</p>
     </div>
   </div>
 </template>
@@ -41,6 +41,11 @@ export default{
   margin: 20px 10px
 }
 
+.cardPlant:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 h1 {
   font-weight: bolder;
   font-size: 2rem;
@@ -55,9 +60,8 @@ h1 {
 }
 
 .cardPlant_picture{
-  width: 30%;
-  min-width: 150px;
-  height: auto;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
   object-fit: cover;
   margin: 0 auto;

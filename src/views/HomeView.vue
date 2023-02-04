@@ -1,10 +1,12 @@
 
 <template>
-    Je suis la home
-    <div class="listPlantContainer">
-        <CardComponent v-for="plantsList in dataList" :key="`plantList-${plantsList.id}`" v-bind:plant="plantsList"/>
-
-    </div>
+    <section class="section">
+        <h1 class="section_h1">Liste des plantes</h1>
+        <div class="listPlantContainer">
+            <CardComponent v-for="plantsList in dataList" :key="`plantList-${plantsList.id}`" v-bind:plant="plantsList"/>
+    
+        </div>
+    </section>
 
 </template>
 
@@ -13,7 +15,7 @@ import CardComponent from '../components/CardComponent.vue';
 export default {
     name: "home",
     data() {
-        console.log(this.$store.state.plantsList);
+        console.log(this.$store.state.plantsList.data);
         return {
             dataList : this.$store.state.plantsList.data
         }
@@ -28,6 +30,14 @@ export default {
 }
 </script>
 <style scoped>
+
+.section_h1{
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bolder;
+    color: rgb(110, 175, 125);
+    margin: 2rem;
+}
 
 .listPlantContainer{
     display: flex;
