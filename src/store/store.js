@@ -15,6 +15,18 @@ export default createStore({
         pages : 1
     },
     getters:{
+        // updatePages(event){
+        //     console.log('updatePages');
+        //     if(event == 'previous'){
+        //         console.log('-1');
+        //         return this.state.pages += -1; 
+        //         // context.commit('updatePagesMutation', -1);
+        //     }
+        //     else {
+        //         return this.state.pages += 1; 
+        //         // context.commit('updatePagesMutation', 1);
+        //     }
+        // }
 
     },
     mutations:{

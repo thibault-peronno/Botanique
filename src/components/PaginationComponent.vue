@@ -29,11 +29,11 @@ export default {
     },
     methods: {
         handlePrevious(event){
-            // console.log(event.target.dataset.pagination);
-            this.$store.dispatch('updatePages', event.target.dataset.pagination );
+            console.log(event.target.dataset.pagination);
+            this.$store.dispatch('updatePages', event.target.dataset.pagination );            
         },
         handleNext(event){
-            // console.log(event);
+            console.log(event);
             this.$store.dispatch('updatePages', event.target.dataset.pagination );
         }
     }

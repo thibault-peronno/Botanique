@@ -1,30 +1,42 @@
 
 <template>
+
   <section>
-    <router-link :to="{ name: 'currentPlant', params: { plantId : plant.id} }">
-    <div class="cardPlant">
-      <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
-      <div class="cardPlant_div_picture">
-        <img class="cardPlant_picture" :src="plant.image_url" alt="">
-      </div>
-      <div class="cardPlant_year-family">
-        <div class="plantYear">
-          <p>Découverte</p>
-          <p class="cardPlant_year tag">{{ plant.year }}</p>
+      <router-link :to="{ name: 'currentPlant', params: { plantId: plant.id } }" class="sectionCardComponent">
+        <div class="cardPlant" v-for="plant in dataList" :key="`plantList-${plant.id}`">
+          <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
+          <div class="cardPlant_div_picture">
+            <img class="cardPlant_picture" :src="plant.image_url" alt="">
+          </div>
+          <div class="cardPlant_year-family">
+            <div class="plantYear">
+              <p>Découverte</p>
+              <p class="cardPlant_year tag">{{ plant.year }}</p>
+            </div>
+            <div class="plantFamilly">
+              <p>Famille</p>
+              <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'non reçu' }}</p>
+            </div>
+          </div>
         </div>
-        <div class="plantFamilly">
-          <p>Famille</p>
-          <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'non reçu' }}</p>
-        </div>
-      </div>
-    </div>
-  </router-link>
+      </router-link>
   </section>
 </template>
 
 <script >
 export default {
   name: "cardPlantComponent",
+  data() {
+    // console.log(this.$store.state.plantsList);
+    return {
+      dataList: [],
+    }
+  },
+  async beforeCreate() {
+    await this.$store.dispatch('getPlantsList');
+    /* mis après le async pour être sûr que le chargement des datas se font après le retour de l'api */
+    this.dataList = this.$store.state.plantsList.data;
+  },
   props: {
     plant: {
       type: Object,
@@ -42,6 +54,12 @@ export default {
 </script>
 
 <style scoped>
+
+.sectionCardComponent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 .cardPlant {
   width: 250px;
   min-height: 380px;
