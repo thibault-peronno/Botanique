@@ -37,6 +37,7 @@ export default {
         }
     },
     async beforeCreate(){
+        console.log(this.$route.params.plantId);
        await this.$store.dispatch('getPlantById', this.$route.params.plantId);
        this.plant = this.$store.state.currentPlant.data;
         console.log(this.$store.state.currentPlant);

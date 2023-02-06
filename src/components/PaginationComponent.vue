@@ -1,18 +1,21 @@
 <template>
     <section class="sectionPagination">
-        <div 
-            class="pagination paginationPrevious" 
-            v-on:click="handlePrevious"
-            v-if="this.$store.state.pages > 1"
-        >
+        <div class="pagination paginationPrevious" v-on:click="handlePrevious" v-if="this.$store.state.pages > 1">
             <span data-pagination="previous">
                 &#12296;
             </span>
         </div>
-        <div 
-            class="pagination paginationNext" 
-            @click="handleNext" data-pagination="next" 
-        >
+        <div class="pagination paginationBefore paginationOne" v-if="this.$store.state.pages > 3 || this.$store.state.page == 1">
+            1
+        </div>
+        <p v-if="this.$store.state.pages > 4">...</p>
+        <div class="pagination paginationBefore" v-if="this.$store.state.pages > 2">
+            {{ this.$store.state.pages - 2 }}
+        </div>
+        <div class="pagination paginationCurrent" v-if="this.$store.state.pages > 1">
+            {{ this.$store.state.pages -1 }}
+        </div>
+        <div class="pagination paginationNext" @click="handleNext" data-pagination="next">
             <span data-pagination="next">
                 &#12297;
             </span>
@@ -22,39 +25,38 @@
 
 <script>
 export default {
-    data(){
+    data() {
         return {
-
         }
     },
+    
     methods: {
-        handlePrevious(event){
+        handlePrevious(event) {
             console.log(event.target.dataset.pagination);
-            this.$store.dispatch('updatePages', event.target.dataset.pagination );            
+            this.$store.dispatch('updatePages', event.target.dataset.pagination);
         },
-        handleNext(event){
+        handleNext(event) {
             console.log(event);
-            this.$store.dispatch('updatePages', event.target.dataset.pagination );
+            this.$store.dispatch('updatePages', event.target.dataset.pagination);
         }
     }
-    
+
 }
 </script>
 
 <style>
-
-.sectionPagination{
+.sectionPagination {
     margin: 10px 20px;
     display: flex;
     justify-content: center;
 }
 
-.pagination{
+.pagination {
     font-weight: 700;
     font-size: 1.2rem;
     color: rgb(110, 175, 125);
-    border : 1px solid rgb(63, 115, 75);
-    padding : 5px;
+    border: 1px solid rgb(63, 115, 75);
+    padding: 5px;
     border-radius: 10px;
     width: 50px;
     height: 50px;
@@ -64,17 +66,34 @@ export default {
     cursor: pointer;
 }
 
-.pagination:hover{
+.pagination:hover {
     color: white;
-    border : 1px solid rgb(110, 175, 125);
+    border: 1px solid rgb(110, 175, 125);
     background-color: rgb(63, 115, 75);
     transform: scale(1.1);
 }
 
-.paginationPrevious{
+.paginationPrevious {
     margin-right: 10px;
 }
-.paginationNext{
+
+.paginationNext {
     margin-left: 10px;
+}
+
+.paginationCurrent{
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.paginationBefore{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.paginationOne{
+    margin: 0 10px 0 0;
 }
 </style>

@@ -1,9 +1,10 @@
 
 <template>
 
-  <section>
-      <router-link :to="{ name: 'currentPlant', params: { plantId: plant.id } }" class="sectionCardComponent">
-        <div class="cardPlant" v-for="plant in dataList" :key="`plantList-${plant.id}`">
+  <section class="sectionCardComponent">
+    <div v-for="plant in dataList" :key="`plantList-${plant.id}`" >
+      <router-link :to="{ name: 'currentPlant', params: { plantId : plant.id } }" >
+        <div class="cardPlant" >
           <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
           <div class="cardPlant_div_picture">
             <img class="cardPlant_picture" :src="plant.image_url" alt="">
@@ -20,6 +21,7 @@
           </div>
         </div>
       </router-link>
+    </div>
   </section>
 </template>
 
@@ -30,6 +32,7 @@ export default {
     // console.log(this.$store.state.plantsList);
     return {
       dataList: [],
+      plantId : this.plant.id
     }
   },
   async beforeCreate() {

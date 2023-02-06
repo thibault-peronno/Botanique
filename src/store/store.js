@@ -14,21 +14,6 @@ export default createStore({
         currentPlant : [],
         pages : 1
     },
-    getters:{
-        // updatePages(event){
-        //     console.log('updatePages');
-        //     if(event == 'previous'){
-        //         console.log('-1');
-        //         return this.state.pages += -1; 
-        //         // context.commit('updatePagesMutation', -1);
-        //     }
-        //     else {
-        //         return this.state.pages += 1; 
-        //         // context.commit('updatePagesMutation', 1);
-        //     }
-        // }
-
-    },
     mutations:{
         getPlantsListMutation(state, listData){
             state.plantsList = listData;
@@ -60,6 +45,7 @@ export default createStore({
         },
         async getPlantById(context, idPlant){
             try{
+                console.log('getPlantById');
                 const response = await axiosInstance.get(`${idPlant}/?token=${token}`);
                 context.commit('getPlantByIdMutation', response.data)
             } catch(error){
