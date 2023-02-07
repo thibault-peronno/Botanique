@@ -26,8 +26,10 @@ export default createStore({
             // console.log(countPages);
             state.pages += countPages;
             // console.log(countPages,  state.pages);
+        },
+        backPageMutation(state, numberPage){
+            state.pages = Number(numberPage);
         }
-
     },
     actions:{
         async getPlantsList(context)
@@ -61,6 +63,9 @@ export default createStore({
             else {
                 context.commit('updatePagesMutation', 1);
             }
+        },
+        backPage(context, backPage){
+            context.commit('backPageMutation', backPage);
         }
     }
 })

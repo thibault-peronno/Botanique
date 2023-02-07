@@ -1,21 +1,40 @@
 <template>
     <section class="sectionPagination">
-        <div class="pagination paginationPrevious" v-on:click="handlePrevious" v-if="this.$store.state.pages > 1">
+        <div 
+            class="pagination paginationPrevious" 
+            v-on:click="handlePrevious" 
+            v-if="this.$store.state.pages > 1"
+        >
             <span data-pagination="previous">
                 &#12296;
             </span>
         </div>
-        <div class="pagination paginationBefore paginationOne" v-if="this.$store.state.pages > 3 || this.$store.state.page == 1">
+        <div 
+            class="pagination paginationBefore paginationOne" 
+            v-if="this.$store.state.pages > 3 || this.$store.state.pages == 1" @click="handlePage"
+        >
             1
         </div>
         <p v-if="this.$store.state.pages > 4">...</p>
-        <div class="pagination paginationBefore" v-if="this.$store.state.pages > 2">
-            {{ this.$store.state.pages - 2 }}
+        <div 
+            class="pagination paginationBefore" 
+            v-if="this.$store.state.pages >= 2" 
+            @click="handlePage"
+        >
+            {{ this.$store.state.pages - 1 }}
         </div>
-        <div class="pagination paginationCurrent" v-if="this.$store.state.pages > 1">
-            {{ this.$store.state.pages -1 }}
+        <div 
+            class="pagination paginationCurrent" 
+            v-if="this.$store.state.pages > 1" 
+            @click="handlePage"
+        >
+            {{ this.$store.state.pages }}
         </div>
-        <div class="pagination paginationNext" @click="handleNext" data-pagination="next">
+        <div 
+            class="pagination paginationNext" 
+            @click="handleNext" 
+            data-pagination="next"
+        >
             <span data-pagination="next">
                 &#12297;
             </span>
@@ -26,19 +45,27 @@
 <script>
 export default {
     data() {
+        
         return {
         }
     },
     
     methods: {
         handlePrevious(event) {
-            console.log(event.target.dataset.pagination);
+            // console.log(event.target.dataset.pagination);
+            console.log(this.$store.state.pages);
             this.$store.dispatch('updatePages', event.target.dataset.pagination);
         },
         handleNext(event) {
-            console.log(event);
+            // console.log(event);
+            console.log(this.$store.state.pages);
             this.$store.dispatch('updatePages', event.target.dataset.pagination);
+        },
+        handlePage(event) {
+            console.log(event.target.textContent);
+            this.$store.dispatch('backPage', event.target.textContent);
         }
+
     }
 
 }

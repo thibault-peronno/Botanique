@@ -6,7 +6,7 @@
             <CardComponent :key="this.$store.state.pages"/>    
         </div>
         <div>
-            <PaginationComponent />
+            <PaginationComponent :key="this.$store.state.pages"/>
         </div>
     </section>
 </template>
