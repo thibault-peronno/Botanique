@@ -23,18 +23,22 @@
                 <img :src="plant.image_url" alt="" class="plantContainer-img">
             </div>
         </div>
-        
+        <FooterComponent />
     </section>
 
 </template>
 
 <script>
+import FooterComponent from '../components/FooterComponent.vue';
 export default {
     data(){
         return{
             plant : null,
 
         }
+    },
+    components:{
+        FooterComponent,
     },
     async beforeCreate(){
         console.log(this.$route.params.plantId);
