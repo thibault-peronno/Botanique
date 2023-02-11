@@ -3,7 +3,7 @@
         <p class="footer_name">&copy; Thibault PERONNO</p>
         <p class="footer_cda footer_txt">Futur Concepteur et Développeur d'Application</p>
         <p class="footer_dwwm footer_txt">Développeur Web et Web Mobile (Titre RNCP)</p>
-        <p class="footer_api footer_txt">API ouverte de <a class="footer_api-a" href="https://trefle.io/">Trefle.io</a></p>
+        <p class="footer_api footer_txt">API ouverte de <a class="footer_api-a" href="https://trefle.io/" target="_blank">Trefle.io</a></p>
     </div>
 </template>
 
