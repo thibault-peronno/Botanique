@@ -52,6 +52,25 @@ h1 {
   text-align: center;
 }
 
+h2{
+  font-weight: bolder;
+  font-size: 1.8rem;
+  color: rgb(63, 115, 75);
+  margin: 0 0 10px 0;
+}
+
+h3{
+  font-weight: bolder;
+  font-size: 1.4rem;
+  color: rgb(110, 175, 125);
+  margin: 0 0 10px 0;
+}
+
+p{
+  font-size: 1.2rem;
+  line-height: 1.4em;
+}
+
 nav {
   width: 100%;
   font-size: 12px;
