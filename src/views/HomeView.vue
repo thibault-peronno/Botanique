@@ -35,17 +35,32 @@ export default {
     margin-bottom: 150px;
 }
 .section_h1{
-    text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bolder;
     color: rgb(110, 175, 125);
-    margin: 2rem;
+    margin: 1.5rem 0;
 }
 
 .listPlantContainer{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media (min-width: 1024px) {
+    .section_h1{
+        text-align: center;
+        font-size: 4rem;
+        font-weight: bolder;
+        margin: 2rem;
+    }
+    
+    .listPlantContainer{
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
 }
 
 </style>

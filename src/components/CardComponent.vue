@@ -60,8 +60,7 @@ export default {
 
 .sectionCardComponent{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
 }
 .cardPlant {
   width: 250px;
@@ -111,6 +110,12 @@ export default {
   text-align: center;
 }
 
-
-@media (min-width: 1024px) {}
+@media (min-width: 720px){
+  .sectionCardComponent{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+}
 </style>
