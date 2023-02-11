@@ -8,7 +8,7 @@
         </div>
         <div class="container-about_site">
             <h2 class="about-site_h3">Pourqoi ce site en VueJs3 ?</h2>
-            <p>Ce site n'a vocation qu'à titre pédagogique sur le framework VueJS en version 3. Lors de la formation pour le titre de CDA au sein de l'école <a href="https://oclock.io/">O'Clock</a> nous sommes formés sur des tecnologique back-end et front-end. Cette année, c'est le framework <a href="https://vuejs.org/">VueJs</a> qui a été choisi.</p>
+            <p>Ce site n'a vocation qu'à titre pédagogique sur le framework VueJS en version 3. Lors de la formation pour le titre de CDA au sein de l'école <a href="https://oclock.io/" target="_blank">O'Clock</a> nous sommes formés sur des tecnologique back-end et front-end. Cette année, c'est le framework <a href="https://vuejs.org/" target="_blank">VueJs</a> qui a été choisi.</p>
             <p>Bien que la formation intensive nous donne les cartes pour devenir des développeurs employable, je souhaite approndir les techologie abordées lors de la formation. C'est pour cela, j'ai codé ce site.</p>
             <div class="about-site_languages">
                 <h2>Langages du site</h2>

@@ -59,6 +59,7 @@ export default {
     .listPlantContainer{
         flex-wrap: wrap;
         justify-content: space-between;
+        margin: 0 5px;
     }
 
 }
