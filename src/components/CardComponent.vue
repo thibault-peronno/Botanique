@@ -61,14 +61,15 @@ export default {
 .sectionCardComponent{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .cardPlant {
-  width: 250px;
+  width: 320px;
   min-height: 380px;
   box-shadow: 0px 0px 3px 0px grey;
   border-radius: 10px;
   padding: 10px;
-  margin: 20px 10px;
+  margin: 20px 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -115,7 +116,7 @@ export default {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: space-around;
   }
 }
 </style>
