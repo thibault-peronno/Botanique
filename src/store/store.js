@@ -40,6 +40,7 @@ export default createStore({
     actions:{
         async getPlantsList(context)
         {
+            this.state.plantsList.data = undefined;
             try{   
                 const response = await axiosInstance.get(`?token=${token}&page=${this.state.pages}`);
                 // const response = await axiosInstance.get(`?token=${token}`);
@@ -53,7 +54,7 @@ export default createStore({
         },
         async getPlantById(context, idPlant){
             try{
-                console.log('getPlantById');
+                // console.log('getPlantById');
                 const response = await axiosInstance.get(`${idPlant}/?token=${token}`);
                 context.commit('getPlantByIdMutation', response.data)
             } catch(error){
@@ -61,7 +62,7 @@ export default createStore({
             }
         },
         updatePages(context, event){
-            console.log('updatePages');
+            // console.log('updatePages');
             if(event == 'previous'){
                 console.log('-1');
                 context.commit('updatePagesMutation', -1);
