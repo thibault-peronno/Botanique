@@ -11,11 +11,11 @@
         </div>
         <div 
             class="pagination paginationBefore paginationOne" 
-            v-if="this.$store.state.pages > 3 || this.$store.state.pages == 1" @click="handlePage"
+            v-if="this.$store.state.pages > 2 || this.$store.state.pages == 1" @click="handlePage"
         >
             1
         </div>
-        <p v-if="this.$store.state.pages > 4">...</p>
+        <p v-if="this.$store.state.pages > 3">...</p>
         <div 
             class="pagination paginationBefore" 
             v-if="this.$store.state.pages >= 2" 
@@ -53,16 +53,16 @@ export default {
     methods: {
         handlePrevious(event) {
             // console.log(event.target.dataset.pagination);
-            console.log(this.$store.state.pages);
+            // console.log(this.$store.state.pages);
             this.$store.dispatch('updatePages', event.target.dataset.pagination);
         },
         handleNext(event) {
             // console.log(event);
-            console.log(this.$store.state.pages);
+            // console.log(this.$store.state.pages);
             this.$store.dispatch('updatePages', event.target.dataset.pagination);
         },
         handlePage(event) {
-            console.log(event.target.textContent);
+            // console.log(event.target.textContent);
             this.$store.dispatch('backPage', event.target.textContent);
         }
 

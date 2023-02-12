@@ -55,10 +55,10 @@ export default {
         FooterComponent,
     },
     async beforeCreate() {
-        console.log(this.$route.params.plantId);
+        // console.log(this.$route.params.plantId);
         await this.$store.dispatch('getPlantById', this.$route.params.plantId);
         this.plant = this.$store.state.currentPlant.data;
-        console.log(this.$store.state.currentPlant);
+        // console.log(this.$store.state.currentPlant);
     }
 }
 </script>

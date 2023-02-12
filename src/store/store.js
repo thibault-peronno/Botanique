@@ -14,8 +14,14 @@ export default createStore({
         currentPlant : [],
         pages : 1
     },
+    getters: {
+        isSkeleton(state) {
+            return state.plantsList.data === undefined ? true : false;
+          }
+    },
     mutations:{
         getPlantsListMutation(state, listData){
+            // console.log(state.plantsList.data);
             state.plantsList = listData;
         },
         getPlantByIdMutation(state, plantData){

@@ -1,6 +1,8 @@
 
 <template>
 
+  <SkeletonComponent v-if="this.isSkeleton" :key="this.isSkeleton"/>
+
   <section class="sectionCardComponent">
     <div v-for="plant in dataList" :key="`plantList-${plant.id}`" >
       <router-link :to="{ name: 'currentPlant', params: { plantId : plant.id } }" >
@@ -26,33 +28,44 @@
 </template>
 
 <script >
+import SkeletonComponent from './SkeletonComponent.vue';
+
 export default {
-  name: "cardPlantComponent",
-  data() {
-    // console.log(this.$store.state.plantsList);
-    return {
-      dataList: [],
-      plantId : this.plant.id
-    }
-  },
-  async beforeCreate() {
-    await this.$store.dispatch('getPlantsList');
-    /* mis après le async pour être sûr que le chargement des datas se font après le retour de l'api */
-    this.dataList = this.$store.state.plantsList.data;
-  },
-  props: {
-    plant: {
-      type: Object,
-      default: function () {
+    name: "cardPlantComponent",
+    data() {
         return {
-          id: Number,
-          common_name: String,
-          year: Number,
-          family_common_name: String
-        }
+            dataList: [],
+            // plantId: this.plant.id,
+        };
+    },
+    async beforeCreate() {
+        await this.$store.dispatch("getPlantsList");
+        /* mis après le async pour être sûr que le chargement des datas se fasses après le retour de l'api */
+        // console.log(this.$store.getters.isSkeleton);
+        this.dataList = this.$store.state.plantsList.data;
+        // console.log(this.$store.getters.isSkeleton);
+      },
+      computed : {
+        // pour les method calculées. Appel un getters pour surveiller les changements
+        isSkeleton() {
+          // console.log(this.$store.getters.isSkeleton);
+        return this.$store.getters.isSkeleton;
       }
-    }
-  }
+    },
+    props: {
+        plant: {
+            type: Object,
+            default: function () {
+                return {
+                    id: Number,
+                    common_name: String,
+                    year: Number,
+                    family_common_name: String
+                };
+            }
+        }
+    },
+    components: { SkeletonComponent }
 }
 </script>
 
