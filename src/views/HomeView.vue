@@ -36,7 +36,7 @@ export default {
 </script>
 <style scoped>
 .section {
-    margin-bottom: 150px;
+    /* margin-bottom: 150px; */
 }
 
 .section_h1 {

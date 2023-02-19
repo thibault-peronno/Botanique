@@ -4,38 +4,39 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+    </nav>
   </header>
 
   <RouterView />
 </template>
 
 <style >
-
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,1000;1,800&display=swap');
 
-*, ::after, ::before{
-    margin :0;
-    padding : 0;
-    box-sizing: border-box;
-    font-family: 'Nunito', 'Lucida Sans', 'Verdana', 'sans-serif';
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', 'Lucida Sans', 'Verdana', 'sans-serif';
 }
 
-a{
-    text-decoration: none;
-    color: rgb(110, 175, 125);
+a {
+  text-decoration: none;
+  color: rgb(110, 175, 125);
 }
 
-li{
-    list-style-type: none;
+li {
+  list-style-type: none;
 }
 
-.icon{
-    width:30px;
-    height:30px;
+.icon {
+  width: 30px;
+  height: 30px;
 }
 
 header {
@@ -52,21 +53,21 @@ h1 {
   text-align: center;
 }
 
-h2{
+h2 {
   font-weight: bolder;
   font-size: 1.8rem;
   color: rgb(63, 115, 75);
   margin: 0 0 10px 0;
 }
 
-h3{
+h3 {
   font-weight: bolder;
   font-size: 1.4rem;
   color: rgb(110, 175, 125);
   margin: 0 0 10px 0;
 }
 
-p{
+p {
   font-size: 1.2rem;
   line-height: 1.4em;
 }
@@ -106,6 +107,20 @@ nav a {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: 9px;
+    right: 45px;
+    box-shadow: 0px 0px 2px 0px black;
+    background-color: rgb(110, 175, 125);
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    width: 50px;
+    text-align: center;
   }
 }
 </style>
