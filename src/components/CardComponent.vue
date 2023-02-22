@@ -13,11 +13,11 @@
           </div>
           <div class="cardPlant_year-family">
             <div class="plantYear">
-              <p>Découverte</p>
+              <p class="cardText">Découverte</p>
               <p class="cardPlant_year tag">{{ plant.year }}</p>
             </div>
             <div class="plantFamilly">
-              <p>Famille</p>
+              <p class="cardText">Famille</p>
               <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'non reçu' }}</p>
             </div>
           </div>
@@ -28,6 +28,7 @@
 </template>
 
 <script >
+
 import SkeletonComponent from './SkeletonComponent.vue';
 
 export default {
@@ -78,9 +79,10 @@ export default {
 }
 .cardPlant {
   width: 320px;
-  min-height: 380px;
+  min-height: 390px;
+  border: 2px solid rgb(110, 175, 125);
   box-shadow: 0px 0px 3px 0px grey;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 10px;
   margin: 20px 0px;
   display: flex;
@@ -112,6 +114,10 @@ export default {
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
+}
+
+.cardText{
+  text-align: center;
 }
 
 .tag {

@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 export default {
 
 }
@@ -37,9 +38,10 @@ export default {
 }
 .cardSkeleton {
   width: 320px;
-  min-height: 380px;
+  min-height: 350px;
+  border: 2px solid rgb(110, 175, 125);
   box-shadow: 0px 0px 3px 0px grey;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 10px;
   margin: 20px 0px;
   display: flex;

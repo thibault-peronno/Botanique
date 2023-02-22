@@ -41,7 +41,7 @@ li {
 
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  height: 140px;
   padding: 25px;
 }
 
@@ -74,9 +74,8 @@ p {
 
 nav {
   width: 100%;
-  font-size: 12px;
+  /* font-size: 12px; */
   text-align: center;
-  margin-top: 2rem;
 }
 
 nav a.router-link-exact-active {
@@ -91,6 +90,7 @@ nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  font-size: 1.5rem;
 }
 
 @media (min-width: 1024px) {
@@ -106,21 +106,8 @@ nav a {
     font-size: 1rem;
 
     padding: 1rem 0;
-    margin-top: 1rem;
   }
 
-  .tooltip {
-    position: absolute;
-    top: 9px;
-    right: 45px;
-    box-shadow: 0px 0px 2px 0px black;
-    background-color: rgb(110, 175, 125);
-    color: white;
-    padding: 3px;
-    border-radius: 5px;
-    font-size: 0.7rem;
-    width: 50px;
-    text-align: center;
-  }
+
 }
 </style>

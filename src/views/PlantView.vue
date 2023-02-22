@@ -43,6 +43,7 @@
 </template>
 
 <script>
+
 import FooterComponent from '../components/FooterComponent.vue';
 export default {
     data() {
@@ -148,7 +149,7 @@ details[open] summary::after {
 .plantContainer-img {
     box-shadow: 0px 0px 3px 0px grey;
     border-radius: 10px;
-    max-height: 500px;
+    max-height: 380px;
     object-fit: cover;
     margin: 0 auto;
 }
@@ -159,6 +160,7 @@ details[open] summary::after {
     padding: 0 30px;
     flex-direction: row;
     align-items: start;
+    height: calc(100vh - 280px);
 }
 
 .plantContainer-data {
