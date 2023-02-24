@@ -2,6 +2,7 @@
 <template >
     <section class="section">
         <h1 class="section_h1">Liste des plantes</h1>
+        <img src="../../public/icons/plante2.png" alt="" class="imgDyn">
         <div>
             <PaginationComponent :key="this.$store.state.pages" />
         </div>
@@ -52,6 +53,10 @@ export default {
     align-items: center;
 }
 
+.imgDyn {
+    display: none;
+}
+
 
 @media (min-width: 1024px) {
     .section_h1 {
@@ -65,6 +70,14 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         margin: 0 5px;
+    }
+
+    .imgDyn {
+        display: block;
+        height: 300px;
+        position: absolute;
+        right: 5%;
+        top: 40px;
     }
 
 }

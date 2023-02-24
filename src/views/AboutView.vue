@@ -41,6 +41,14 @@ export default {
 
 <style scoped>
 
+a{
+    color :var(--linkColor);
+}
+
+a:hover{
+    color :var(--texteColorNavActif);
+}
+
 .container-about{
     padding: 20px;
 }
@@ -54,7 +62,7 @@ export default {
 .about-info_icons_face{
     width: 200px;
     border-radius: 50%;
-    border: 2px solid rgb(63, 115, 75);
+    border: 2px solid var(--borderColor);
     padding: 5px;
     margin: 0 0 30px 0;
 }

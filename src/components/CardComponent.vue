@@ -9,16 +9,16 @@
         <div class="cardPlant" >
           <h1 class="cardPlant_h1">{{ plant.common_name }}</h1>
           <div class="cardPlant_div_picture">
-            <img class="cardPlant_picture" :src="plant.image_url" alt="">
+            <img class="cardPlant_picture" :src="plant.image_url ? plant.image_url : '../../../public/icons/plante2.png'" alt="">
           </div>
           <div class="cardPlant_year-family">
             <div class="plantYear">
               <p class="cardText">Découverte</p>
-              <p class="cardPlant_year tag">{{ plant.year }}</p>
+              <p class="cardPlant_year tag">{{ plant.year ? plant.year : 'indéfini' }}</p>
             </div>
             <div class="plantFamilly">
               <p class="cardText">Famille</p>
-              <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'non reçu' }}</p>
+              <p class="cardPlant_family tag">{{ plant.family_common_name ? plant.family_common_name : 'indéfini' }}</p>
             </div>
           </div>
         </div>
@@ -79,10 +79,9 @@ export default {
 }
 .cardPlant {
   width: 320px;
-  min-height: 390px;
-  border: 2px solid rgb(110, 175, 125);
-  box-shadow: 0px 0px 3px 0px grey;
-  /* border-radius: 10px; */
+  min-height: 490px;
+  background-color: var(--bgColorCard);
+  box-shadow: 5px 4px 10px 0px var(--borderColor);
   padding: 10px;
   margin: 20px 0px;
   display: flex;
@@ -103,8 +102,8 @@ export default {
 }
 
 .cardPlant_picture {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 250px;
   border-radius: 10px;
   object-fit: cover;
   margin: 10px auto;
@@ -123,10 +122,10 @@ export default {
 .tag {
   color: white;
   font-weight: 700;
-  background-color: rgb(63, 115, 75);
+  background-color: var(--primaryBgColor);
   padding: 5px 7px;
   margin: 5px 0;
-  border-radius: 10px;
+  border-radius: 2px;
   text-align: center;
 }
 

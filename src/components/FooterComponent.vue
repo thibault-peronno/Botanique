@@ -47,15 +47,15 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    border-top: 1px solid rgb(63, 115, 75);
+    border-top: 1px solid var(--borderColor);
     width: 100%;
-    background-color: white;
+    background-color: var(--primaryBgColor);
     position: relative;
 }
 
 .footer_name {
     font-weight: bold;
-    color: rgb(63, 115, 75);
+    color: var(--titleH3color);
 }
 
 .footer_txt {
@@ -63,12 +63,12 @@ export default {
 }
 
 .footer_api-a {
-    color: rgb(110, 175, 125);
+    color: var(--texteColorNavActif);
 }
 
 .footer_api-a:hover {
     cursor: pointer;
-    color: rgb(63, 115, 75);
+    color: var(--linkColor );
 }
 
 .icons_language {

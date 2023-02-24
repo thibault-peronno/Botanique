@@ -1,0 +1,13 @@
+:root{
+    --primaryBgColor : rgb(39, 93, 52);
+    --borderColor : rgb(110, 175, 125);
+    --bgColorCard :rgb(55, 117, 70);
+
+    --titleH1Color : white;
+    --titleH2Color : rgb(194, 236, 205);
+    --titleH3color : rgb(120, 205, 142);
+    --texteColor : white;
+    --linkColor : rgb(211, 245, 220);;
+    --texteColorNav : rgb(110, 175, 125);
+    --texteColorNavActif : rgb(126, 204, 144);
+}

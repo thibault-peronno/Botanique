@@ -9,12 +9,12 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/about">About</RouterLink>
     </nav>
   </header>
-
   <RouterView />
 </template>
 
 <style >
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,1000;1,800&display=swap');
+@import './assets/varCss.css';
 
 *,
 ::after,
@@ -25,9 +25,13 @@ import { RouterLink, RouterView } from 'vue-router'
   font-family: 'Nunito', 'Lucida Sans', 'Verdana', 'sans-serif';
 }
 
+body{
+  background-color: var(--primaryBgColor);
+}
+
 a {
   text-decoration: none;
-  color: rgb(110, 175, 125);
+  color: var(--texteColorNav)
 }
 
 li {
@@ -48,7 +52,7 @@ header {
 h1 {
   font-weight: bolder;
   font-size: 2rem;
-  color: rgb(110, 175, 125);
+  color: var(--titleH1Color);
   margin: 0 0 10px 0;
   text-align: center;
 }
@@ -56,20 +60,21 @@ h1 {
 h2 {
   font-weight: bolder;
   font-size: 1.8rem;
-  color: rgb(63, 115, 75);
+  color: var(--titleH2Color);
   margin: 0 0 10px 0;
 }
 
 h3 {
   font-weight: bolder;
   font-size: 1.4rem;
-  color: rgb(110, 175, 125);
+  color: var(--titleH3color);
   margin: 0 0 10px 0;
 }
 
 p {
   font-size: 1.2rem;
   line-height: 1.4em;
+  color : var(--texteColor)
 }
 
 nav {
@@ -79,7 +84,7 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: var(--texteColorNavActif);
 }
 
 nav a.router-link-exact-active:hover {
@@ -107,7 +112,6 @@ nav a {
 
     padding: 1rem 0;
   }
-
 
 }
 </style>

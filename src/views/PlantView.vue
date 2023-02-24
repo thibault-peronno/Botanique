@@ -64,7 +64,9 @@ export default {
 }
 </script>
 
+
 <style scoped>
+@import '../assets/varCss.css';
 .currentPlant_data_img {
     display: flex;
     flex-direction: column;
@@ -85,7 +87,7 @@ export default {
 
 .lightWord {
     font-weight: 700;
-    color: rgb(63, 115, 75);
+    color: var(--titleH3color);
 }
 
 .indicList {
@@ -95,7 +97,7 @@ export default {
 
 details {
     width: 100%;
-    border-bottom: 1px solid green;
+    border-bottom: 1px solid var(--borderColor);
     margin: 0 0 20px 0;
 }
 /* permet de supprimer le marker, sauf sur macos */
@@ -112,13 +114,13 @@ details summary::-webkit-details-marker {
 }
 
 summary:hover {
-    color: rgba(110, 175, 125, 0.50);
+    color: var(--texteColorNav);
     cursor: pointer;
 }
 
 summary::after {
     content: "+";
-    color: rgb(63, 115, 75);
+    color: var(--linkColor);
     font-weight: bold;
     font-size: 30px;
     transition: transform 0.5s;
@@ -138,6 +140,7 @@ details[open] summary::after {
 
 .li {
     margin: 0.5 5px;
+    color : var(--texteColor)
 }
 
 .plantContainer_img {
@@ -181,7 +184,6 @@ details[open] summary::after {
 
 .lightWord {
     font-weight: 700;
-    color: rgb(63, 115, 75);
 }
 
 .indicList {
@@ -191,7 +193,6 @@ details[open] summary::after {
 
 details {
     width: 90%;
-    border-bottom: 1px solid green;
     margin: 0 0 20px 0;
 }
 /* permet de supprimer le marker, sauf sur macos */
@@ -208,13 +209,11 @@ details summary::-webkit-details-marker {
 }
 
 summary:hover {
-    color: rgba(110, 175, 125, 0.50);
     cursor: pointer;
 }
 
 summary::after {
     content: "+";
-    color: rgb(63, 115, 75);
     font-weight: bold;
     font-size: 30px;
     transition: transform 0.5s;

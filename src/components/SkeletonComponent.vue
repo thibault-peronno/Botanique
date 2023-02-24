@@ -38,10 +38,9 @@ export default {
 }
 .cardSkeleton {
   width: 320px;
-  min-height: 350px;
-  border: 2px solid rgb(110, 175, 125);
-  box-shadow: 0px 0px 3px 0px grey;
-  /* border-radius: 10px; */
+  min-height: 390px;
+  background-color: var(--primaryBgColor);
+  box-shadow: 5px 4px 10px 0px var(--borderColor);
   padding: 10px;
   margin: 20px 0px;
   display: flex;
