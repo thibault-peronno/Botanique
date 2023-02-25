@@ -175,7 +175,7 @@ details[open] summary::after {
         padding: 30px;
         flex-direction: row;
         justify-content: center;
-        height: calc(100vh - 240px - 35px);
+        min-height: calc(100vh - 240px - 35px);
     }
 
     .plantContainer-data {
