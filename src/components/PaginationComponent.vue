@@ -1,33 +1,33 @@
 <template>
     <section class="sectionPagination">
-        <div class="pagination paginationPrevious" v-on:click="handlePrevious" v-if="this.$store.state.pages > 1">
+        <div v-if="this.$store.state.pages  > 1" class="pagination prev" v-on:click="handlePrevious" >
             <span data-pagination="previous">
                 &#12296;
             </span>
         </div>
-        <div class="pagination paginationBefore paginationOne"
+        <div class="pagination "
             v-if="this.$store.state.pages > 2" @click="handlePage">
             {{ isFirst }}
         </div>
-        <p v-if="this.$store.state.pages > 3">...</p>
-        <div v-if="isPrev !=''" class="pagination paginationBefore"  @click="handlePage">
+        <p v-if="this.$store.state.pages > 3" class="etc">...</p>
+        <div v-if="isPrev !=''" class="pagination"  @click="handlePage">
             {{ isPrev }}
         </div>
         <div class="pagination paginationCurrent"  @click="handlePage">
             {{ this.$store.state.pages }}
         </div>
-        <div v-if="isNext !=''" class="pagination paginationNext" data-pagination="next">
-            <span data-pagination="next">
+        <div v-if="isNext !=''" class="pagination">
+            <span>
                 {{ isNext }}
             </span>
         </div>
-        <div v-if="isLast != this.$store.state.pages" class="pagination paginationNext" data-pagination="next" @click="handlePage">
-            <span data-pagination="next">
+        <div v-if="isLast != this.$store.state.pages" class="pagination"  @click="handlePage">
+            <span>
                 {{ isLast }}
             </span>
         </div>
-        <div class="pagination paginationNext" @click="handleNext" data-pagination="next">
-            <span data-pagination="next">
+        <div class="pagination next" @click="handleNext">
+            <span>
                 &#12297;
             </span>
         </div>
@@ -124,28 +124,23 @@ export default {
     transform: scale(1.1);
 }
 
-.paginationPrevious {
-    margin-right: 10px;
-}
-
-.paginationNext {
-    margin-left: 10px;
-}
 
 .paginationCurrent {
     font-size: 1.5rem;
     width: max-content;
     height: max-content;
-    margin-left: 10px;
+    margin: 0 10px;
+    color : var(--texteColor);
+}
+.etc{
+    margin : 0 5px;
 }
 
-.paginationBefore {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
+.prev{
+    margin : 0 10px 0 0;
 }
 
-.paginationOne {
-    margin: 0 10px 0 0;
+.next{
+    margin : 0 0 0 10px;
 }
 </style>
