@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { createStore } from 'vuex';
-
+/*
+npm run build
+firebase deploy --only hosting
+ */
 const token = import.meta.env.VITE_TOKEN;
 
 const axiosInstance = axios.create({
-    baseURL: `/api/v1/plants`,
+    baseURL: `https://trefle.io/api/v1/plants`,
 })
 
 export default createStore({
@@ -72,11 +75,11 @@ export default createStore({
                 const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
                 // const response = await axiosInstance.get(`?token=${token}`);
 
-                // console.log('2', response.data);
+                console.log('2', response.data);
                 context.commit('getPlantsListMutation', response.data);
 
             } catch (error) {
-                console.log('error', error);
+                console.log('error', error.message);
             }
         },
         async getPlantById(context, idPlant) {
