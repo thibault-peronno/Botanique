@@ -45,8 +45,8 @@ li {
 
 header {
   line-height: 1.5;
-  height: 140px;
-  padding: 25px;
+  height: 100px;
+  padding: 15px;
 }
 
 h1 {
