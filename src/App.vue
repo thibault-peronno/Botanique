@@ -12,6 +12,15 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
+<script>
+export default {
+  async beforeCreate(){
+    await this.$store.dispatch('getAuthToken');
+  }
+}
+
+</script>
+
 <style >
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,1000;1,800&display=swap');
 @import './assets/varCss.css';

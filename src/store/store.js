@@ -1,14 +1,32 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import { createStore } from 'vuex';
+
+import customParseFormat  from 'dayjs/plugin/customParseFormat';
 /*
 npm run build
 firebase deploy --only hosting
  */
-const token = import.meta.env.VITE_TOKEN;
+// const token = import.meta.env.VITE_TOKEN;
 
 const axiosInstance = axios.create({
     baseURL: `https://trefle.io/api/v1/plants`,
+    params: {
+        token: localStorage.token,
+    },
 })
+
+// const axiosConfig = {
+//     method: 'HEAD',
+//     mode: 'no-cors',
+//     headers: {
+//         'Access-Control-Allow-Origin': '*',
+//         Accept: 'application/json',
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
+//     },
+//     withCredentials: false,
+// }
 
 export default createStore({
 
@@ -44,7 +62,7 @@ export default createStore({
     },
     mutations: {
         getPlantsListMutation(state, listData) {
-           
+
             state.plantsList = listData;
 
             state.total = Number(listData.meta.total);
@@ -69,26 +87,57 @@ export default createStore({
         }
     },
     actions: {
+        async getAuthToken(context){
+            const currentToken = localStorage.token;
+            const currentLimit = localStorage.limit;
+
+            dayjs.extend(customParseFormat)
+            // console.log(currentLimit);
+            const dayJs = Date.parse(dayjs(currentLimit,"MM-DD-YYYY HH:mm", 'fr'))
+            // console.log(Date.parse(dayJs.$d));
+            const date = new Date();
+            const formatDate = Date.parse(date)
+            console.log(formatDate);
+            console.log(Date.parse(localStorage.limit))
+            if(!currentToken && (dayJs > formatDate | !dayJs)){
+                try{
+                    console.log('auth token');
+                    const response = await axios.get('http://localhost:5000/trefle');
+                    console.log(response.data);
+                    const dataToken = response.data;
+                    let token = dataToken.token;
+                    let limit = JSON.stringify(dataToken.expiration);
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('limit', limit);
+                } catch (error) {
+                    console.log(error);
+                }
+
+            }
+        },
         async getPlantsList(context) {
             this.state.plantsList.data = undefined;
             try {
-                const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
-                // const response = await axiosInstance.get(`?token=${token}`);
+                console.log('1');
+                const response = await axiosInstance.get(`?page=${this.state.pages}`);
+                // const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
 
                 console.log('2', response.data);
                 context.commit('getPlantsListMutation', response.data);
 
             } catch (error) {
-                console.log('error', error.message);
+                console.log('error', error.message, error.toJSON());
             }
         },
         async getPlantById(context, idPlant) {
             try {
                 // console.log('getPlantById');
-                const response = await axiosInstance.get(`${idPlant}/?token=${token}`);
+                const response = await axiosInstance.get(`${idPlant}`);
                 context.commit('getPlantByIdMutation', response.data)
             } catch (error) {
                 console.log('plant by id error', error);
+                const response = await axiosInstance.get(`${idPlant}`);
+                context.commit('getPlantByIdMutation', response.data)
             }
         },
         updatePages(context, page) {
