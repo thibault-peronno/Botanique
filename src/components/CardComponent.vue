@@ -29,6 +29,7 @@
 
 <script >
 
+
 import SkeletonComponent from './SkeletonComponent.vue';
 
 export default {
@@ -39,7 +40,7 @@ export default {
             // plantId: this.plant.id,
         };
     },
-    async beforeCreate() {
+    async beforeMount() {
         await this.$store.dispatch("getPlantsList");
         /* mis après le async pour être sûr que le chargement des datas se fasses après le retour de l'api */
         // console.log(this.$store.getters.isSkeleton);

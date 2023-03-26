@@ -1,22 +1,19 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
   <header>
     <nav>
-      <RouterLink to="/">Home</RouterLink>
+      <router-link to="/">Home</router-link>
       <RouterLink to="/about">About</RouterLink>
     </nav>
   </header>
-  <RouterView />
+  <router-view />
 </template>
 
 <script>
+
 export default {
-  async beforeCreate(){
-    await this.$store.dispatch('getAuthToken');
-  }
+  // async beforeCreate(){
+  //   await this.$store.dispatch('getAuthToken');
+  // }
 }
 
 </script>

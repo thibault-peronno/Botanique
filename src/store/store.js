@@ -2,32 +2,32 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { createStore } from 'vuex';
 
-import customParseFormat  from 'dayjs/plugin/customParseFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 /*
 npm run build
 firebase deploy --only hosting
  */
 // const token = import.meta.env.VITE_TOKEN;
 
+
+const axiosConfig = {
+    method: 'GET',
+    mode: 'no-cors',
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Origin' : '*'
+    },
+    withCredentials: false,
+}
+
 const axiosInstance = axios.create({
     baseURL: `https://trefle.io/api/v1/plants`,
     params: {
-        token: localStorage.token,
+        token: localStorage.getItem('token'),
     },
 })
-
-// const axiosConfig = {
-//     method: 'HEAD',
-//     mode: 'no-cors',
-//     headers: {
-//         'Access-Control-Allow-Origin': '*',
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
-//     },
-//     withCredentials: false,
-// }
-
 export default createStore({
 
     state: {
@@ -38,7 +38,7 @@ export default createStore({
         first: '',
         prev: '',
         next: '',
-        last: '',
+        last: ''
     },
     getters: {
         isSkeleton(state) {
@@ -87,47 +87,84 @@ export default createStore({
         }
     },
     actions: {
-        async getAuthToken(context){
-            const currentToken = localStorage.token;
-            const currentLimit = localStorage.limit;
+        async getPlantsList(context) {
+            // ------ Auth ------ //
 
             dayjs.extend(customParseFormat)
             // console.log(currentLimit);
-            const dayJs = Date.parse(dayjs(currentLimit,"MM-DD-YYYY HH:mm", 'fr'))
+            const dayJs = localStorage.getItem('expiration') ? Date.parse(dayjs(localStorage.getItem('expiration'), "MM-DD-YYYY HH:mm", 'fr')) : false;
             // console.log(Date.parse(dayJs.$d));
             const date = new Date();
             const formatDate = Date.parse(date)
-            console.log(formatDate);
-            console.log(Date.parse(localStorage.limit))
-            if(!currentToken && (dayJs > formatDate | !dayJs)){
-                try{
+            // console.log(formatDate);
+            // console.log(Date.parse(localStorage.getItem('expiration')))
+            if (!localStorage.getItem('token') || (dayJs > formatDate)) {
+                try {
                     console.log('auth token');
-                    const response = await axios.get('http://localhost:5000/trefle');
+                    const response = await axios.get('http://localhost:5000/trefle', axiosConfig);
                     console.log(response.data);
                     const dataToken = response.data;
-                    let token = dataToken.token;
+                    this.state.token = dataToken.token;
+                    axiosInstance.defaults.params.token = dataToken.token;
                     let limit = JSON.stringify(dataToken.expiration);
-                    localStorage.setItem('token', token);
-                    localStorage.setItem('limit', limit);
+                    localStorage.setItem('token', this.state.token);
+                    localStorage.setItem('expiration', limit);
                 } catch (error) {
-                    console.log(error);
+                    // console.log('error', error.message, error.toJSON());
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+                        // that falls out of the range of 2xx
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                        // http.ClientRequest in node.js
+                        console.log(error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
                 }
 
+
             }
-        },
-        async getPlantsList(context) {
+            // ------ /Auth ------ //
+
+            // ----- fetch data ----- //
+            // console.log(localStorage.getItem('token'));
             this.state.plantsList.data = undefined;
+            console.log('get plant list')
             try {
                 console.log('1');
-                const response = await axiosInstance.get(`?page=${this.state.pages}`);
+                const response = await axiosInstance.get(`?page=${this.state.pages}`, axiosConfig);
                 // const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
 
                 console.log('2', response.data);
                 context.commit('getPlantsListMutation', response.data);
 
             } catch (error) {
-                console.log('error', error.message, error.toJSON());
+                // console.log('error', error.message, error.toJSON());
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
+                }
+                console.log(error.config);
             }
+            // ----- /fetch data ----- //
         },
         async getPlantById(context, idPlant) {
             try {

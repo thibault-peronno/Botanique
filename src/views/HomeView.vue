@@ -74,9 +74,9 @@ export default {
 
     .imgDyn {
         display: block;
-        height: 300px;
+        height: 200px;
         position: absolute;
-        right: 5%;
+        right: 7%;
         top: 40px;
     }
 
