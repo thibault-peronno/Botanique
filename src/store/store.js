@@ -2,7 +2,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { createStore } from 'vuex';
 
-import customParseFormat  from 'dayjs/plugin/customParseFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 /*
 npm run build
 firebase deploy --only hosting
@@ -40,6 +40,7 @@ export default createStore({
         next: '',
         last: '',
     },
+
     getters: {
         isSkeleton(state) {
             return state.plantsList.data === undefined ? true : false;
@@ -60,6 +61,7 @@ export default createStore({
             return state.last;
         }
     },
+
     mutations: {
         getPlantsListMutation(state, listData) {
 
@@ -86,23 +88,25 @@ export default createStore({
             state.pages = Number(numberPage);
         }
     },
+
     actions: {
-        async getAuthToken(context){
+        async getAuthToken() {
             const currentToken = localStorage.token;
             const currentLimit = localStorage.limit;
 
             dayjs.extend(customParseFormat)
             // console.log(currentLimit);
-            const dayJs = Date.parse(dayjs(currentLimit,"MM-DD-YYYY HH:mm", 'fr'))
+            const dayJs = Date.parse(dayjs(currentLimit, "MM-DD-YYYY HH:mm", 'fr'))
             // console.log(Date.parse(dayJs.$d));
             const date = new Date();
             const formatDate = Date.parse(date)
-            console.log(formatDate);
-            console.log(Date.parse(localStorage.limit))
-            if(!currentToken && (dayJs > formatDate | !dayJs)){
-                try{
+            // console.log(formatDate);
+            // console.log(Date.parse(localStorage.limit))
+
+            if (!currentToken && (dayJs > formatDate | !dayJs)) {
+                try {
                     console.log('auth token');
-                    const response = await axios.get('http://localhost:5000/trefle');
+                    const response = await axios.get('https://server-projet-botanik-production.up.railway.app/');
                     console.log(response.data);
                     const dataToken = response.data;
                     let token = dataToken.token;
@@ -110,44 +114,90 @@ export default createStore({
                     localStorage.setItem('token', token);
                     localStorage.setItem('limit', limit);
                 } catch (error) {
-                    console.log(error);
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+                        // that falls out of the range of 2xx
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                        // http.ClientRequest in node.js
+                        console.log(error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
                 }
-
             }
-        },
-        async getPlantsList(context) {
-            this.state.plantsList.data = undefined;
-            try {
-                console.log('1');
-                const response = await axiosInstance.get(`?page=${this.state.pages}`);
-                // const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
-
-                console.log('2', response.data);
-                context.commit('getPlantsListMutation', response.data);
-
-            } catch (error) {
-                console.log('error', error.message, error.toJSON());
-            }
-        },
-        async getPlantById(context, idPlant) {
-            try {
-                // console.log('getPlantById');
-                const response = await axiosInstance.get(`${idPlant}`);
-                context.commit('getPlantByIdMutation', response.data)
-            } catch (error) {
-                console.log('plant by id error', error);
-                const response = await axiosInstance.get(`${idPlant}`);
-                context.commit('getPlantByIdMutation', response.data)
-            }
-        },
-        updatePages(context, page) {
-            console.log('updatePages', page);
-
-            context.commit('updatePagesMutation', page);
-
-        },
-        backPage(context, backPage) {
-            context.commit('backPageMutation', backPage);
         }
+    },
+
+    async getPlantsList(context) {
+        this.state.plantsList.data = undefined;
+        try {
+            console.log('1');
+            const response = await axiosInstance.get(`?page=${this.state.pages}`);
+            // const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
+
+            console.log('2', response.data);
+            context.commit('getPlantsListMutation', response.data);
+
+        } catch (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
+        }
+    },
+
+    async getPlantById(context, idPlant) {
+        try {
+            // console.log('getPlantById');
+            const response = await axiosInstance.get(`${idPlant}`);
+            context.commit('getPlantByIdMutation', response.data)
+        } catch (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
+        }
+    },
+
+    updatePages(context, page) {
+        console.log('updatePages', page);
+
+        context.commit('updatePagesMutation', page);
+
+    },
+
+    backPage(context, backPage) {
+        context.commit('backPageMutation', backPage);
     }
-})
+});
