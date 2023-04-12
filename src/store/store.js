@@ -106,11 +106,12 @@ export default createStore({
             if (!currentToken && (dayJs > formatDate | !dayJs)) {
                 try {
                     console.log('auth token');
-                    const response = await axios.get('https://server-projet-botanik-production.up.railway.app/');
+                    const response = await axios.get('https://server-projet-botanik-production.up.railway.app/get');
                     console.log(response.data);
                     const dataToken = response.data;
                     let token = dataToken.token;
                     let limit = JSON.stringify(dataToken.expiration);
+                    console.log('local storage');
                     localStorage.setItem('token', token);
                     localStorage.setItem('limit', limit);
                 } catch (error) {
