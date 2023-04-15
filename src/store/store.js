@@ -99,7 +99,7 @@ export default createStore({
             const dayJs = localStorage.getItem('expiration') ? Date.parse(dayjs(localStorage.getItem('expiration'), "MM-DD-YYYY HH:mm", 'fr')) : false;
             const date = new Date();
             const formatDate = Date.parse(date)
-            if (!localStorage.getItem('token') || (dayJs > formatDate)) {
+            if (!localStorage.getItem('token') || (dayJs < formatDate)) {
                 try {
                     console.log('auth token');
                     const response = await axios.get('https://server-projet-botanik-production.up.railway.app/get', axiosConfig);
@@ -114,6 +114,7 @@ export default createStore({
                     if (error.response) {
                         // The request was made and the server responded with a status code
                         // that falls out of the range of 2xx
+                        window.alert(`${error.response.status}, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                         console.log(error.response.data);
                         console.log(error.response.status);
                         console.log(error.response.headers);
@@ -121,11 +122,14 @@ export default createStore({
                         // The request was made but no response was received
                         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                         // http.ClientRequest in node.js
+                        window.alert(`${error.request.url}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                         console.log(error.request);
                     } else {
                         // Something happened in setting up the request that triggered an Error
+                        window.alert(`${error.message}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                         console.log('Error', error.message);
                     }
+                    window.alert(`${error.prototype.message}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                     console.log(error.config);
                 }
 
@@ -144,7 +148,7 @@ export default createStore({
                 if (error.response) {
                     // The request was made and the server responded with a status code
                     // that falls out of the range of 2xx
-                    window.alert(error.response.status, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    window.alert(`${error.response.status}, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                     console.log(error.response.data);
                     console.log(error.response.status);
                     console.log(error.response.headers);
@@ -152,14 +156,14 @@ export default createStore({
                     // The request was made but no response was received
                     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                     // http.ClientRequest in node.js
-                    window.alert(error.request.url, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    window.alert(`${error.request.url}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                     console.log(error.request);
                 } else {
                     // Something happened in setting up the request that triggered an Error
-                    window.alert(error.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    window.alert(`${error.message}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                     console.log('Error', error.message);
                 }
-                window.alert(error.prototype.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                window.alert(`${error.prototype.message}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                 console.log(error.config);
             }
             // ----- /fetch data ----- //
@@ -174,7 +178,7 @@ export default createStore({
                 if (error.response) {
                     // The request was made and the server responded with a status code
                     // that falls out of the range of 2xx
-                    window.alert(error.response.status, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    window.alert(`${error.response.status}, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                     console.log(error.response.data);
                     console.log(error.response.status);
                     console.log(error.response.headers);
@@ -182,14 +186,14 @@ export default createStore({
                     // The request was made but no response was received
                     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                     // http.ClientRequest in node.js
-                    window.alert(error.request.url, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    window.alert(`${error.request.url}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                     console.log(error.request);
                 } else {
                     // Something happened in setting up the request that triggered an Error
-                    window.alert(error.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    window.alert(`${error.message}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                     console.log('Error', error.message);
                 }
-                window.alert(error.prototype.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                window.alert(`${error.prototype.message}, Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin`);
                 console.log(error.config);
             }
         },
