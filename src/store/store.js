@@ -16,17 +16,17 @@ const axiosInstance = axios.create({
     },
 })
 
-// const axiosConfig = {
-//     method: 'HEAD',
-//     mode: 'no-cors',
-//     headers: {
-//         'Access-Control-Allow-Origin': '*',
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
-//     },
-//     withCredentials: false,
-// }
+const axiosConfig = {
+    method: 'GET',
+    mode: 'no-cors',
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Origin': '*'
+    },
+    withCredentials: false,
+}
 
 export default createStore({
 
@@ -90,30 +90,26 @@ export default createStore({
     },
 
     actions: {
-        async getAuthToken() {
-            const currentToken = localStorage.token;
-            const currentLimit = localStorage.limit;
+        async getPlantsList(context) {
+            this.state.plantsList.data = undefined;
+
+            // ------ Auth ------ //
 
             dayjs.extend(customParseFormat)
-            // console.log(currentLimit);
-            const dayJs = Date.parse(dayjs(currentLimit, "MM-DD-YYYY HH:mm", 'fr'))
-            // console.log(Date.parse(dayJs.$d));
+            const dayJs = localStorage.getItem('expiration') ? Date.parse(dayjs(localStorage.getItem('expiration'), "MM-DD-YYYY HH:mm", 'fr')) : false;
             const date = new Date();
             const formatDate = Date.parse(date)
-            // console.log(formatDate);
-            // console.log(Date.parse(localStorage.limit))
-
-            if (!currentToken && (dayJs > formatDate | !dayJs)) {
+            if (!localStorage.getItem('token') || (dayJs > formatDate)) {
                 try {
                     console.log('auth token');
-                    const response = await axios.get('https://server-projet-botanik-production.up.railway.app/get');
+                    const response = await axios.get('https://server-projet-botanik-production.up.railway.app/get', axiosConfig);
                     console.log(response.data);
                     const dataToken = response.data;
-                    let token = dataToken.token;
+                    this.state.token = dataToken.token;
+                    axiosInstance.defaults.params.token = dataToken.token;
                     let limit = JSON.stringify(dataToken.expiration);
-                    console.log('local storage');
-                    localStorage.setItem('token', token);
-                    localStorage.setItem('limit', limit);
+                    localStorage.setItem('token', this.state.token);
+                    localStorage.setItem('expiration', limit);
                 } catch (error) {
                     if (error.response) {
                         // The request was made and the server responded with a status code
@@ -132,73 +128,82 @@ export default createStore({
                     }
                     console.log(error.config);
                 }
+
+
             }
-        }
-    },
+            // ------ /Auth ------ //
 
-    async getPlantsList(context) {
-        this.state.plantsList.data = undefined;
-        try {
-            console.log('1');
-            const response = await axiosInstance.get(`?page=${this.state.pages}`);
-            // const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
+            // ----- fetch data ----- //
+            
+            try {
+                const response = await axiosInstance.get(`?page=${this.state.pages}`, axiosConfig);
+                // const response = await axiosInstance.get(`?page=${this.state.pages}&token=${token}`);
+                context.commit('getPlantsListMutation', response.data);
 
-            console.log('2', response.data);
-            context.commit('getPlantsListMutation', response.data);
-
-        } catch (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                // http.ClientRequest in node.js
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
+            } catch (error) {
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    window.alert(error.response.status, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    window.alert(error.request.url, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    window.alert(error.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    console.log('Error', error.message);
+                }
+                window.alert(error.prototype.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                console.log(error.config);
             }
-            console.log(error.config);
-        }
-    },
+            // ----- /fetch data ----- //
+        },
 
-    async getPlantById(context, idPlant) {
-        try {
-            // console.log('getPlantById');
-            const response = await axiosInstance.get(`${idPlant}`);
-            context.commit('getPlantByIdMutation', response.data)
-        } catch (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                // http.ClientRequest in node.js
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
+        async getPlantById(context, idPlant) {
+            try {
+                // console.log('getPlantById');
+                const response = await axiosInstance.get(`${idPlant}`);
+                context.commit('getPlantByIdMutation', response.data)
+            } catch (error) {
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    window.alert(error.response.status, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    window.alert(error.request.url, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    window.alert(error.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                    console.log('Error', error.message);
+                }
+                window.alert(error.prototype.message, 'Il y a une erreur, recharge la page et si ça persiste contactes moi sur linkedin');
+                console.log(error.config);
             }
-            console.log(error.config);
+        },
+
+        updatePages(context, page) {
+            console.log('updatePages', page);
+
+            context.commit('updatePagesMutation', page);
+
+        },
+
+        backPage(context, backPage) {
+            context.commit('backPageMutation', backPage);
         }
-    },
-
-    updatePages(context, page) {
-        console.log('updatePages', page);
-
-        context.commit('updatePagesMutation', page);
-
-    },
-
-    backPage(context, backPage) {
-        context.commit('backPageMutation', backPage);
     }
+
 });

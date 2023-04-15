@@ -13,11 +13,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <script>
-export default {
-  async beforeCreate(){
-    await this.$store.dispatch('getAuthToken');
-  }
-}
+
 
 </script>
 
