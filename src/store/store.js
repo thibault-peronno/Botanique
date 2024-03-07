@@ -102,8 +102,8 @@ export default createStore({
             if (!localStorage.getItem('token') || (dayJs < formatDate)) {
                 try {
                     console.log('auth token');
-                    const response = await axios.get('https://server-projet-botanik-production.up.railway.app/get', axiosConfig);
-                    console.log(response.data);
+                    const response = await axios.get('https://api-trefle.thibault-peronno.fr/get', axiosConfig);
+                    console.log(response);
                     const dataToken = response.data;
                     this.state.token = dataToken.token;
                     axiosInstance.defaults.params.token = dataToken.token;

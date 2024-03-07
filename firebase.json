@@ -11,25 +11,6 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ],
-    "headers" : [
-      {
-        "source" : "/api/**",
-        "headers" : [
-          {
-            "key" : "Access-Control-Allow-Origin",
-            "value" : "POST, GET, OPTIONS"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(jpg|jpeg|gif|png)",
-      "headers": [ {
-        "key": "Cache-Control",
-        "value": "max-age=1728000"
-      } ]
-
-      }
     ]
   }
 }
