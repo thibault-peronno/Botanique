@@ -1,0 +1,25 @@
+[debug] [2024-03-07T18:55:34.222Z] ----------------------------------------------------------------------
+[debug] [2024-03-07T18:55:34.268Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\peron\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-07T18:55:34.270Z] CLI Version:   13.4.0
+[debug] [2024-03-07T18:55:34.272Z] Platform:      win32
+[debug] [2024-03-07T18:55:34.273Z] Node Version:  v20.9.0
+[debug] [2024-03-07T18:55:34.273Z] Time:          Thu Mar 07 2024 19:55:34 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2024-03-07T18:55:34.274Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-07T18:55:34.506Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-07T18:55:34.508Z] > authorizing via signed-in user (thibault.peronno.dev.pro@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\peron\Desktop\Code\developpment
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
