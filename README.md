@@ -1,10 +1,14 @@
 # vue-project-test-api-botanique
 
-This template should help get you started developing with Vue 3 in Vite.
+For my formation, on my free time, I improved my skills on Vue.JS. I choose to use Trefle API.
 
-## Recommended IDE Setup
+For the storage, I used VueX. Because we learned this store for my formation. But I also worked on a project where I used Pinia.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+I am usinf Firebase to put the website online. https://botanik-3bb39.web.app
+
+![image](https://github.com/thibault-peronno/Botanique/assets/94917616/a18eb377-27cf-4524-ae42-1a6cffaa361e)
+
+
 
 ## Customize configuration
 
